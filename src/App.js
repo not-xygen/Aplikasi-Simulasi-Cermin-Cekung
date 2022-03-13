@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Frame from './components/Frame'
+import ContinuousSlider from './components/ContinuousSlider';
+import VerticalSlider from './components/VerticalSlider';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  return(
+    <div className="flex flex-col w-screen h-screen bg-zinc-800">
+      <div className="flex gap-5 "> 
+        <div className="m-5 w-11/12 bg-zinc-500 rounded-lg">
+          <Frame />
+        </div>
+        <div className="flex m-5 w-1/12 items-center justify-center bg-zinc-500 rounded-lg">
+          <VerticalSlider />
+        </div>
+      </div>
+      <div className="flex flex-col m-5 items-center justify-center bg-zinc-500 rounded-lg ">
+        <ContinuousSlider />
+        <ContinuousSlider />
+      </div>
     </div>
   );
 }
