@@ -22,10 +22,10 @@ export default function ContinuousSlider(props) {
   };
 
   const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 1000) {
-      setValue(1000);
+    if (value < -350) {
+      setValue(-350);
+    } else if (value > 350) {
+      setValue(350);
     }
   };
 
@@ -36,7 +36,8 @@ export default function ContinuousSlider(props) {
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
-            max={500}
+            min={-350}
+            max={350}
             aria-labelledby="input-slider"
           />
         </Grid>
@@ -48,8 +49,8 @@ export default function ContinuousSlider(props) {
             onBlur={handleBlur}
             inputProps={{
               step: 1,
-              min: 0,
-              max: 1000,
+              min: -350,
+              max: 350,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}

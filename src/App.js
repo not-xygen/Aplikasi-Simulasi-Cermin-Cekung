@@ -5,9 +5,9 @@ import { FcLike } from "react-icons/fc";
 import React from 'react';
 
 function App() {
-  const [ukuranBenda, setUkuranBenda] = React.useState(150)
-  const [jarakBenda, setJarakBenda] = React.useState(300)
-  const [titikFokus, setTitikFokus] = React.useState(155)
+  const [ukuranBenda, setUkuranBenda] = React.useState(0)
+  const [jarakBenda, setJarakBenda] = React.useState(0)
+  const [titikFokus, setTitikFokus] = React.useState(0)
   return(
     <div>
       <div className="flex m-5 p-5 items-center justify-center">
