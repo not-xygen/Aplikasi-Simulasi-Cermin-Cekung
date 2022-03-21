@@ -9,8 +9,9 @@ const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-export default function ContinuousSlider() {
-  const [value, setValue] = React.useState(30);
+export default function ContinuousSlider(props) {
+  const value = props.value
+  const setValue = props.setValue
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -23,8 +24,8 @@ export default function ContinuousSlider() {
   const handleBlur = () => {
     if (value < 0) {
       setValue(0);
-    } else if (value > 100) {
-      setValue(100);
+    } else if (value > 1000) {
+      setValue(1000);
     }
   };
 
@@ -35,6 +36,7 @@ export default function ContinuousSlider() {
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
+            max={500}
             aria-labelledby="input-slider"
           />
         </Grid>
@@ -47,7 +49,7 @@ export default function ContinuousSlider() {
             inputProps={{
               step: 1,
               min: 0,
-              max: 100,
+              max: 1000,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
