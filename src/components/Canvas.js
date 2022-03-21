@@ -13,12 +13,14 @@ function point(x, y) {
 }
 
 export default function Canvas(props) {
-    console.log(props);
     const canvasRef = useRef(null)
 
-    function draw_line(ctx, start, end) {
+    function draw_line(ctx, start, end, strokeColor) {
+        ctx.beginPath()
         ctx.moveTo(start.x, start.y)
         ctx.lineTo(end.x, end.y)
+        ctx.strokeStyle = strokeColor
+        ctx.stroke()
     }
 
     const draw = ctx => {
@@ -35,41 +37,32 @@ export default function Canvas(props) {
         const bendaX = titikX - jarakBenda
         const bendaY = titikY - ukuranBenda
 
-        const bayanganX = titikX - ukuranBayangan
-        const bayanganY = titikY + jarakBayangan
+        const bayanganX = titikX - jarakBayangan
+        const bayanganY = titikY + ukuranBayangan
 
         const x = bendaX
         const y = bendaY
 
         //Cartesian Plane
-        ctx.beginPath()
-        ctx.strokeStyle = '#55ff55'
-        draw_line(ctx, point(500, 0), point(500, 1000))
-        draw_line(ctx, point(0, 500), point(1000, 500))
-        
+        draw_line(ctx, point(500, 0), point(500, 1000), 'black')
+        draw_line(ctx, point(0, 500), point(1000, 500), 'black')
         //Object
-        draw_line(ctx, point(x, titikY), point(x, y))
+        draw_line(ctx, point(x, titikY), point(x, y), 'red')
         //Reflection
-        draw_line(ctx, point(bayanganX, titikY), point(bayanganX, bayanganY))
-        //Cahaya Lewat
-        draw_line(ctx, point(titikX, bayanganY), point(bayanganX, bayanganY))
-        draw_line(ctx, point(titikX, bendaY), point(bayanganX, bayanganY))
+        draw_line(ctx, point(bayanganX, titikY), point(bayanganX, bayanganY), 'blue')
         //Cahaya Datang
-        draw_line(ctx, point(titikX, bendaY), point(bendaX, bendaY))
-        draw_line(ctx, point(titikX, bayanganY), point(bendaX, bendaY))    
-        
-
-        ctx.stroke();
-
+        draw_line(ctx, point(titikX, bendaY), point(bendaX, bendaY), 'orange')
+        draw_line(ctx, point(titikX, bayanganY), point(bendaX, bendaY), 'orange')    
+        //Cahaya Lewat
+        draw_line(ctx, point(titikX, bayanganY), point(bayanganX, bayanganY), 'lightblue')
+        draw_line(ctx, point(titikX, bendaY), point(bayanganX, bayanganY), 'lightblue')
     }
     
     useEffect(() => {
         
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
-
         context.clearRect(0, 0, canvas.width, canvas.height);
-
         draw(context)
     }, [draw])
     
