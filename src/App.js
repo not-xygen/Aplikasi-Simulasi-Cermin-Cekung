@@ -14,16 +14,15 @@ function App() {
         <h1 className="text-3xl font-semibold">Concave Simulation App</h1>
       </div>
       <div className="flex m-5 p-5" id="frame">
-        <Canvas ukuranBenda={ukuranBenda} jarakBenda={jarakBenda} titikFokus={titikFokus}
-        />
+        <Canvas ukuranBenda={ukuranBenda} jarakBenda={jarakBenda} titikFokus={titikFokus}/>
       </div>
       <div className="flex flex-col m-5 p-5 gap-2 items-center justify-center">
         <h1 className="text-lg font-semibold">Ukuran Benda</h1>
-        <Slider value={ukuranBenda} setValue={setUkuranBenda}/>
+        <Slider value={ukuranBenda} setValue={setUkuranBenda} minValue={-350}/>
         <h1 className="text-lg font-semibold">Jarak Benda</h1>
-        <Slider value={jarakBenda} setValue={setJarakBenda}/>
+        <Slider value={jarakBenda} setValue={setJarakBenda} minValue={-350}/>
         <h1 className="text-lg font-semibold">Titik Fokus Lensa</h1>
-        <Slider value={titikFokus} setValue={setTitikFokus}/>
+        <Slider value={titikFokus} setValue={setTitikFokus} minValue={0}/>
       </div>
       <div className="flex m-5 p-5 items-center justify-center">
         <h1 className="flex text-lg font-semibold">Made with <span className="p-1"><FcLike /></span> Kelompok 4 </h1> 

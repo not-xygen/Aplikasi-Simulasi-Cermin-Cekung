@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
+import { Typography } from '@mui/material';
 
 const Input = styled(MuiInput)`
   width: 42px;
@@ -12,6 +13,7 @@ const Input = styled(MuiInput)`
 export default function ContinuousSlider(props) {
   const value = props.value
   const setValue = props.setValue
+  const minValue = props.minValue
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -22,8 +24,8 @@ export default function ContinuousSlider(props) {
   };
 
   const handleBlur = () => {
-    if (value < -350) {
-      setValue(-350);
+    if (value < minValue) {
+      setValue(minValue);
     } else if (value > 350) {
       setValue(350);
     }
@@ -36,7 +38,7 @@ export default function ContinuousSlider(props) {
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
-            min={-350}
+            min={minValue}
             max={350}
             aria-labelledby="input-slider"
           />
@@ -49,12 +51,17 @@ export default function ContinuousSlider(props) {
             onBlur={handleBlur}
             inputProps={{
               step: 1,
-              min: -350,
+              min: minValue,
               max: 350,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
           />
+        </Grid>
+        <Grid>
+          <Typography>
+            cm
+          </Typography>
         </Grid>
       </Grid>
     </Box>

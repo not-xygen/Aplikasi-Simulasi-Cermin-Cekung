@@ -44,18 +44,20 @@ export default function Canvas(props) {
         const y = bendaY
 
         //Cartesian Plane
-        draw_line(ctx, point(500, 0), point(500, 1000), 'black')
-        draw_line(ctx, point(0, 500), point(1000, 500), 'black')
+        draw_line(ctx, point(titikX, 0), point(titikX, ctx.canvas.width), 'black')
+        draw_line(ctx, point(0, titikY), point(ctx.canvas.height, titikY), 'black')
         //Object
         draw_line(ctx, point(x, titikY), point(x, y), 'red')
         //Reflection
-        draw_line(ctx, point(bayanganX, titikY), point(bayanganX, bayanganY), 'blue')
+        draw_line(ctx, point(bayanganX, titikY), point(bayanganX, bayanganY), 'purple')
         //Cahaya Datang
         draw_line(ctx, point(titikX, bendaY), point(bendaX, bendaY), 'orange')
-        draw_line(ctx, point(titikX, bayanganY), point(bendaX, bendaY), 'orange')    
+        draw_line(ctx, point(titikX, bayanganY), point(bendaX, bendaY), 'orange')
+        draw_line(ctx, point(x, y), point(0, y), 'orange') 
         //Cahaya Lewat
-        draw_line(ctx, point(titikX, bayanganY), point(bayanganX, bayanganY), 'lightblue')
-        draw_line(ctx, point(titikX, bendaY), point(bayanganX, bayanganY), 'lightblue')
+        draw_line(ctx, point(titikX, bayanganY), point(bayanganX, bayanganY), 'blue')
+        draw_line(ctx, point(titikX, bendaY), point(bayanganX, bayanganY), 'blue')
+        draw_line(ctx, point(bayanganX, bayanganY), point(0,bayanganY), 'blue')
     }
     
     useEffect(() => {
@@ -67,6 +69,6 @@ export default function Canvas(props) {
     }, [draw])
     
     return (
-    <canvas className="w-screen h-screen border-4 bg-white border-gray-900 rounded-md" width='1000' height='1000' id='CanvasFrame' ref={canvasRef} {...props}/>
+    <canvas className="w-screen h-screen border-4 bg-white border-gray-900 rounded-md" width='1500' height='1500' id='CanvasFrame' ref={canvasRef} {...props}/>
     )
 }
