@@ -22,30 +22,40 @@ export default function Canvas(props) {
         ctx.strokeStyle = strokeColor
         ctx.stroke()
     }
-
+    
     const draw = ctx => {
         const jarakBenda = props.jarakBenda
-        const ukuranBenda = props.ukuranBenda
+        const tinggiBenda = props.tinggiBenda
         const titikFokus = props.titikFokus
+        const setJarakBayangan = props.setJarakBayangan
+        const setTinggiBayangan = props.setTinggiBayangan
 
         const titikX = ctx.canvas.width / 2
         const titikY = ctx.canvas.height / 2
 
-        const jarakBayangan = jarakBenda * titikFokus / (jarakBenda - titikFokus)
-        const ukuranBayangan = jarakBayangan * ukuranBenda / jarakBenda
+        const hasilJarakBayangan = jarakBenda * titikFokus / (jarakBenda - titikFokus)
+        const hasilTinggiBayangan = hasilJarakBayangan * tinggiBenda / jarakBenda
+        
+        setJarakBayangan(hasilJarakBayangan)
+        setTinggiBayangan(hasilTinggiBayangan)
 
         const bendaX = titikX - jarakBenda
-        const bendaY = titikY - ukuranBenda
+        const bendaY = titikY - tinggiBenda
 
-        const bayanganX = titikX - jarakBayangan
-        const bayanganY = titikY + ukuranBayangan
+        const bayanganX = titikX - hasilJarakBayangan
+        const bayanganY = titikY + hasilTinggiBayangan
 
         const x = bendaX
         const y = bendaY
 
+        let titikBayanganX = 0
+        if (bayanganX >= 750) {
+            titikBayanganX = ctx.canvas.width
+        } 
+
         //Cartesian Plane
-        draw_line(ctx, point(titikX, 0), point(titikX, ctx.canvas.width), 'black')
-        draw_line(ctx, point(0, titikY), point(ctx.canvas.height, titikY), 'black')
+        draw_line(ctx, point(titikX, 0), point(titikX, ctx.canvas.width), 'white')
+        draw_line(ctx, point(0, titikY), point(ctx.canvas.height, titikY), 'white')
         //Object
         draw_line(ctx, point(x, titikY), point(x, y), 'red')
         //Reflection
@@ -57,11 +67,10 @@ export default function Canvas(props) {
         //Cahaya Lewat
         draw_line(ctx, point(titikX, bayanganY), point(bayanganX, bayanganY), 'blue')
         draw_line(ctx, point(titikX, bendaY), point(bayanganX, bayanganY), 'blue')
-        draw_line(ctx, point(bayanganX, bayanganY), point(0,bayanganY), 'blue')
+        draw_line(ctx, point(bayanganX, bayanganY), point(titikBayanganX,bayanganY), 'blue')
     }
     
     useEffect(() => {
-        
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,6 +78,6 @@ export default function Canvas(props) {
     }, [draw])
     
     return (
-    <canvas className="w-screen h-screen border-4 bg-white border-gray-900 rounded-md" width='1500' height='1500' id='CanvasFrame' ref={canvasRef} {...props}/>
+    <canvas className="w-screen h-screen border-4 bg-zinc-900 rounded-lg" width="1500" height='1500' id='CanvasFrame' ref={canvasRef} {...props}/>
     )
 }

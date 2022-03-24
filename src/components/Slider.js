@@ -8,12 +8,15 @@ import { Typography } from '@mui/material';
 
 const Input = styled(MuiInput)`
   width: 42px;
+  color: white;
 `;
 
 export default function ContinuousSlider(props) {
   const value = props.value
   const setValue = props.setValue
   const minValue = props.minValue
+  const maxValue = props.maxValue
+  const label = props.label
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
@@ -26,25 +29,26 @@ export default function ContinuousSlider(props) {
   const handleBlur = () => {
     if (value < minValue) {
       setValue(minValue);
-    } else if (value > 350) {
-      setValue(350);
+    } else if (value > maxValue) {
+      setValue(maxValue);
     }
   };
 
   return (
-    <Box sx={{ width: 1000 }}>
+    <Box sx={{ width: 500 }}>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs>
           <Slider
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             min={minValue}
-            max={350}
+            max={maxValue}
             aria-labelledby="input-slider"
           />
         </Grid>
         <Grid item>
           <Input
+            color='primary'
             value={value}
             size="small"
             onChange={handleInputChange}
@@ -52,15 +56,17 @@ export default function ContinuousSlider(props) {
             inputProps={{
               step: 1,
               min: minValue,
-              max: 350,
+              max: maxValue,
               type: 'number',
               'aria-labelledby': 'input-slider',
             }}
           />
         </Grid>
         <Grid>
-          <Typography>
-            cm
+          <Typography
+            color={'white'}
+          >
+            {label}
           </Typography>
         </Grid>
       </Grid>
