@@ -78,6 +78,6 @@ export default function Canvas(props) {
     }, [draw])
     
     return (
-    <canvas className="w-screen h-screen border-4 bg-zinc-900 rounded-lg" width="1500" height='1500' id='CanvasFrame' ref={canvasRef} {...props}/>
+    <canvas className="flex w-screen h-screen border-4 bg-zinc-900 rounded-lg" width="1000" height='1000' ref={canvasRef} {...props}/>
     )
 }
