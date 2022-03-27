@@ -22,7 +22,37 @@ export default function Canvas(props) {
         ctx.strokeStyle = strokeColor
         ctx.stroke()
     }
-    
+
+    function ddaX(x1, y1, x2, y2){
+        let x
+        let steps
+        let dx = x2 - x1
+        let dy = y2 - y1
+
+        steps = Math.max(Math.abs(dx), Math.abs(dy))
+        let xIncrement = dx / steps;
+        x = x1
+        for (let i = 0; i < 2000; i++){
+            x += xIncrement
+        }
+        return x
+    }
+
+    function ddaY(x1, y1, x2, y2){
+        let y
+        let steps
+        let dx = x2 - x1
+        let dy = y2 - y1
+
+        steps = Math.max(Math.abs(dx), Math.abs(dy))
+        let yIncrement = dy / steps;
+        y = y1
+        for (let i = 0; i < 2000; i++){
+            y += yIncrement
+        }
+        return y
+    }
+
     const draw = ctx => {
         const jarakBenda = props.jarakBenda
         const tinggiBenda = props.tinggiBenda
@@ -48,11 +78,6 @@ export default function Canvas(props) {
         const x = bendaX
         const y = bendaY
 
-        let titikBayanganX = 0
-        if (bayanganX >= 750) {
-            titikBayanganX = ctx.canvas.width
-        } 
-
         //Cartesian Plane
         draw_line(ctx, point(titikX, 0), point(titikX, ctx.canvas.width), 'white')
         draw_line(ctx, point(0, titikY), point(ctx.canvas.height, titikY), 'white')
@@ -61,13 +86,12 @@ export default function Canvas(props) {
         //Reflection
         draw_line(ctx, point(bayanganX, titikY), point(bayanganX, bayanganY), 'purple')
         //Cahaya Datang
-        draw_line(ctx, point(titikX, bendaY), point(bendaX, bendaY), 'orange')
-        draw_line(ctx, point(titikX, bayanganY), point(bendaX, bendaY), 'orange')
-        draw_line(ctx, point(x, y), point(0, y), 'orange') 
+        draw_line(ctx, point(0, bendaY), point(titikX, bendaY), 'orange')
+        draw_line(ctx, point(titikX, bayanganY), point(ddaX(titikX, bayanganY, bendaX, bendaY, true), ddaY(titikX, bayanganY, bendaX, bendaY, true)), 'orange')
+        
         //Cahaya Lewat
-        draw_line(ctx, point(titikX, bayanganY), point(bayanganX, bayanganY), 'blue')
-        draw_line(ctx, point(titikX, bendaY), point(bayanganX, bayanganY), 'blue')
-        draw_line(ctx, point(bayanganX, bayanganY), point(titikBayanganX,bayanganY), 'blue')
+        draw_line(ctx, point(0, bayanganY), point(titikX, bayanganY), 'blue')
+        draw_line(ctx, point(titikX, bendaY), point(ddaX(titikX, bendaY, bayanganX, bayanganY), ddaY(titikX, bendaY, bayanganX, bayanganY)), 'blue')
     }
     
     useEffect(() => {
