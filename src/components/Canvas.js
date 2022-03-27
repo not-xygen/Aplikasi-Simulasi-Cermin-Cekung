@@ -78,6 +78,11 @@ export default function Canvas(props) {
         const x = bendaX
         const y = bendaY
 
+        let titikBayanganX = 0
+        if (titikFokus < 0) {
+            titikBayanganX = 1000
+        } 
+
         //Cartesian Plane
         draw_line(ctx, point(titikX, 0), point(titikX, ctx.canvas.width), 'white')
         draw_line(ctx, point(0, titikY), point(ctx.canvas.height, titikY), 'white')
@@ -90,7 +95,7 @@ export default function Canvas(props) {
         draw_line(ctx, point(titikX, bayanganY), point(ddaX(titikX, bayanganY, bendaX, bendaY, true), ddaY(titikX, bayanganY, bendaX, bendaY, true)), 'orange')
         
         //Cahaya Lewat
-        draw_line(ctx, point(0, bayanganY), point(titikX, bayanganY), 'blue')
+        draw_line(ctx, point(titikBayanganX, bayanganY), point(titikX, bayanganY), 'blue')
         draw_line(ctx, point(titikX, bendaY), point(ddaX(titikX, bendaY, bayanganX, bayanganY), ddaY(titikX, bendaY, bayanganX, bayanganY)), 'blue')
     }
     
