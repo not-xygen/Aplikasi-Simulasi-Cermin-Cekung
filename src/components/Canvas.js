@@ -79,7 +79,7 @@ export default function Canvas(props) {
         const y = bendaY
 
         let titikBayanganX = 0
-        if (titikFokus < 0) {
+        if (hasilJarakBayangan < 0) {
             titikBayanganX = 1000
         } 
 
@@ -97,6 +97,29 @@ export default function Canvas(props) {
         //Cahaya Lewat
         draw_line(ctx, point(titikBayanganX, bayanganY), point(titikX, bayanganY), 'blue')
         draw_line(ctx, point(titikX, bendaY), point(ddaX(titikX, bendaY, bayanganX, bayanganY), ddaY(titikX, bendaY, bayanganX, bayanganY)), 'blue')
+        
+        //Pensil
+        if (jarakBenda > 0 && tinggiBenda > 0) {
+            draw_line(ctx, point(bendaX-10, bendaY), point(bendaX+10, bendaY), 'yellow')
+            draw_line(ctx, point(bendaX-10, bendaY), point(bendaX-10, titikY-10), 'yellow')
+            draw_line(ctx, point(bendaX-10, titikY-10), point(bendaX, titikY), 'yellow')
+            draw_line(ctx, point(bendaX+10, bendaY), point(bendaX+10, titikY-10), 'yellow')
+            draw_line(ctx, point(bendaX+10, titikY-10), point(bendaX, titikY), 'yellow')
+    
+            //Bayangan
+            draw_line(ctx, point(bayanganX-10, bayanganY), point(bayanganX+10, bayanganY), 'yellow')
+            if (hasilJarakBayangan < 0 ) {
+                draw_line(ctx, point(bayanganX-10, bayanganY), point(bayanganX-10, titikY-10), 'yellow')
+                draw_line(ctx, point(bayanganX+10, bayanganY), point(bayanganX+10, titikY-10), 'yellow')
+                draw_line(ctx, point(bayanganX-10, titikY-10), point(bayanganX, titikY), 'yellow')
+                draw_line(ctx, point(bayanganX+10, titikY-10), point(bayanganX, titikY), 'yellow')  
+            } if (hasilJarakBayangan > 0 ) {
+                draw_line(ctx, point(bayanganX-10, bayanganY), point(bayanganX-10, titikY+10), 'yellow')
+                draw_line(ctx, point(bayanganX+10, bayanganY), point(bayanganX+10, titikY+10), 'yellow')
+                draw_line(ctx, point(bayanganX-10, titikY+10), point(bayanganX, titikY), 'yellow')
+                draw_line(ctx, point(bayanganX+10, titikY+10), point(bayanganX, titikY), 'yellow')
+            }
+        }
     }
     
     useEffect(() => {

@@ -35,7 +35,7 @@ export default function ContinuousSlider(props) {
   };
 
   return (
-    <Box sx={{ width: 450 }}>
+    <Box sx={{ minWidth: 300 }}>
       <Grid container spacing={2} alignItems="center">
         <Grid item xs>
           <Slider

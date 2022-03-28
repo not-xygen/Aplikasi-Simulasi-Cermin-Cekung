@@ -6,9 +6,9 @@ import { FcLike } from "react-icons/fc";
 import React from 'react';
 
 function App() {
-  const [tinggiBenda, setTinggiBenda] = React.useState(0)
-  const [jarakBenda, setJarakBenda] = React.useState(0)
-  const [titikFokus, setTitikFokus] = React.useState(0)
+  const [tinggiBenda, setTinggiBenda] = React.useState(100)
+  const [jarakBenda, setJarakBenda] = React.useState(100)
+  const [titikFokus, setTitikFokus] = React.useState(50)
   const [tinggiBayangan, setTinggiBayangan] = React.useState(0)
   const [jarakBayangan, setJarakBayangan] = React.useState(0)
 
