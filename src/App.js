@@ -17,7 +17,7 @@ function App() {
       <div className="flex m-5 p-5 items-center justify-center">
         <h1 className="text-3xl font-semibold text-stone-50">Concave Simulation App</h1>
       </div>
-      <div className="flex m-10">
+      <div className="flex md:m-10">
         <Canvas tinggiBenda={tinggiBenda} jarakBenda={jarakBenda} titikFokus={titikFokus} setTinggiBayangan={setTinggiBayangan} setJarakBayangan={setJarakBayangan} />
       </div>
       <div className='flex flex-col m-10 items-center justify-center md:flex-row'>
