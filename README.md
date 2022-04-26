@@ -1,4 +1,4 @@
-# Concave Simulation App
+# Aplikasi Simulasi Cermin Cekung
 
 Project ini di bootstrapped menggunakan [Create React App](https://github.com/facebook/create-react-app).
 
